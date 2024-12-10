@@ -3,10 +3,14 @@
 import React, { useState } from 'react'
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import MDEditor from '@uiw/react-md-editor'
+import { Button } from './ui/button';
 
 const StartupForm = () => {
 
     const [errors, setErrors] = useState<Record<string, string>>({})
+    const [pitch, setPitch] = useState("")
+    const isPending = false
 
     return (
         <form className='startup-form' action={() => { }}>
@@ -30,6 +34,27 @@ const StartupForm = () => {
                 <Input id='link' name='link' className='startup-form_input' required placeholder='Startup Image Url' />
                 {errors.link && <p className='startup-form_error'>{errors.link}</p>}
             </div>
+            <div data-color-mode='light'>
+                <label htmlFor="pitch" className='startup-form_label'>Pitch</label>
+                <MDEditor 
+                    value={pitch} 
+                    onChange={(value) => setPitch(value as string)} 
+                    id='pitch' 
+                    preview='edit' 
+                    height={300} 
+                    style={{borderRadius: 20, overflow: 'hidden'}}
+                    textareaProps={{
+                        placeholder: "Pitch Your Startups"
+                    }}
+                    previewOptions={{
+                        disallowedElements: ['style']
+                    }}
+                />
+                {errors.pitch && <p className='startup-form_error'>{errors.pitch}</p>}
+            </div>
+            <Button className='startup-form_btn text-white' type='submit' disabled={isPending}>
+                {isPending ? "Submitting..." : "Submit Your Pitch"}
+            </Button>
         </form>
     )
 }
