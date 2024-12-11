@@ -9,6 +9,7 @@ import { formSchema } from '@/lib/validation';
 import { z } from 'zod'
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { createIdea } from '@/lib/actions';
 
 const StartupForm = () => {
 
@@ -36,7 +37,7 @@ const StartupForm = () => {
                     title: 'Success',
                     description: 'Your startup pitch has been created',
                 })
-                router.push(`/startup/${result.id}`)
+                router.push(`/startup/${result._id}`)
             }
 
             return result;
