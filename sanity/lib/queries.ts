@@ -51,5 +51,5 @@ export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type == "author" && _id == $id
     username,
     email,
     image,
-    bio    
+    bio
 }`)
